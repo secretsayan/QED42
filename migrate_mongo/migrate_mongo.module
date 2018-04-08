@@ -1,0 +1,55 @@
+<?php
+/**
+ * Implements hook_menu()
+ *
+ */
+function migrate_mongo_menu(){
+  $items['admin/config/system/migrate-mapping-mongo'] = array(
+      'title' => t('Mongo Mapping'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('migrate_mongo_mapping_form'),
+      'access arguments' => array('access administration menu'),
+      'type' => MENU_NORMAL_ITEM,
+  );
+
+
+  return $items;
+}
+/**
+ * Implements hook_form().
+ */
+function migrate_mongo_mapping_form($form,&$form_state){
+  $fields = field_info_instances('example_task', 'mongo_cities');
+  $fields_list = array_keys($fields);
+  $form['id'] = array(
+      '#title' => 'Map ID field',
+      '#type' => 'select',
+      '#options' => $fields_list,
+  );
+  $form['city'] = array(
+      '#title' => 'Map City field',
+      '#type' => 'select',
+      '#options' => $fields_list,
+  );
+  $form['loc'] = array(
+      '#title' => 'Map Loc field',
+      '#type' => 'select',
+      '#options' => $fields_list
+
+  );
+  $form['pop'] = array(
+      '#title' => 'Map Population field',
+      '#type' => 'select',
+      '#options' => $fields_list,
+  );
+  $form['state'] = array(
+      '#title' => 'Map State field',
+      '#type' => 'select',
+      '#options' => $fields_list,
+  );
+
+  return system_settings_form($form);
+
+}
+
+?>

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the custom mongo features feature.
+ */
+
+include_once 'custom_mongo_features.features.inc';
