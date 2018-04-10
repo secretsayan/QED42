@@ -58,14 +58,26 @@ class MongoContentMigration extends Migration{
       new ExampleItemJSON($json_file, array()), $fields);
 
 
-    $this->destination = new MigrateDestinationNode('mongo_cities');
+   //$this->destination = new MigrateDestinationNode('mongo_cities');
+     $this->destination = new MigrateDestinationEntityAPI('mongo_cities', 'example_task');
+
+      $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'id' => array('description' => 'SOURCE ID',
+        'type' => 'varchar',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        )
+      ),
+      MigrateDestinationEntityAPI::getKeySchema('example_task')
+    );
 
     //Field Mapping
-    $this->addFieldMapping('_id', variable_get('id'));
-    $this->addFieldMapping('city', variable_get('city'));
-    $this->addFieldMapping('loc', variable_get('loc'));
-    $this->addFieldMapping('pop', variable_get('pop'));
-    $this->addFieldMapping('state', variable_get('state'));
+    $this->addFieldMapping(variable_get('id'),'_id' );
+    $this->addFieldMapping(variable_get('city'),'city' );
+    $this->addFieldMapping(variable_get('loc'),'loc' );
+    $this->addFieldMapping(variable_get('pop'),'pop' );
+    $this->addFieldMapping(variable_get('state'),'state' );
 
 }
 }

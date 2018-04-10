@@ -24,10 +24,9 @@ function migrate_mongo_migrate_api() {
   // and override any mappings for the same field in the code. To do this,
   // construct the field mapping object and configure it similarly to when
   // you call addFieldMapping, and pass your mappings as an array below.
-  $translate_mapping = new MigrateFieldMapping('translate', NULL);
-  $translate_mapping->defaultValue(0);
-  $ignore_mapping = new MigrateFieldMapping('migrate_example_beer_styles:ignore_case', NULL);
-  $ignore_mapping->defaultValue(1);
+  //$translate_mapping->defaultValue(0);
+  //$ignore_mapping = new MigrateFieldMapping('migrate_example_beer_styles:ignore_case', NULL);
+  //$ignore_mapping->defaultValue(1);
 
   $api = array(
     // Required - tells the Migrate module that you are implementing version 2
@@ -57,10 +56,7 @@ function migrate_mongo_migrate_api() {
 
         // Here is where we add field mappings which may override those
         // specified in the group constructor.
-        'field_mappings' => array(
-          $translate_mapping,
-          $ignore_mapping,
-        ),
+
       ),
     ),
 
